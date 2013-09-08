@@ -1,7 +1,6 @@
 package lock
 
 import (
-  "log"
   "github.com/coreos/go-etcd/etcd"
   "github.com/coreos/etcd/store"
   "github.com/go-contrib/uuid"
