@@ -19,7 +19,7 @@ func Acquire(cli *etcd.Client, lock string, timeout uint64) (goChan chan int, st
     // log.Println("Hello, I am:",me)
 
     for {
-      resp, acq, err := cli.TestAndSet(lock, "", me, timeout)
+      _, acq, _ := cli.TestAndSet(lock, "", me, timeout)
 
       // log.Println("Lock Resp:",acq,resp,err)
 
@@ -37,7 +37,7 @@ func Acquire(cli *etcd.Client, lock string, timeout uint64) (goChan chan int, st
         // We got a lock, we want to keep it
         go func() {
           for {
-            resp, acq, err := cli.TestAndSet("/fiddler/watcher", me, me, timeout) // Keep the lock alive
+            _, acq, _ := cli.TestAndSet(lock, me, me, timeout) // Keep the lock alive
             // log.Println("Reset Resp:",acq,resp,err)
             
             if !acq {
