@@ -8,14 +8,14 @@ release after the timeout period, and a new node would be granted the lock.
 
 # Example
 
-    import "github.com/hayesgm/go-etcd-lock"
+    import "github.com/hayesgm/go-etcd-lock/lock"
 
     goChan, stopChan := lock.Acquire(cli, "mylock", 20) // Try to get a lock with 20 second timeout
 
     go func() {
       <- goChan // Wait to Acquire lock
       
-      for run := true; run {
+      for run := true; run; {
         select {
         case <-stopChan:
           run = false // We're going to exit
