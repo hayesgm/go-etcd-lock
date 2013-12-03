@@ -3,7 +3,7 @@ package lock
 import (
   "github.com/coreos/go-etcd/etcd"
   "github.com/coreos/etcd/store"
-  "github.com/satori/uuid.go"
+  "github.com/satori/go.uuid"
   "time"
   "log"
 )
